@@ -1,10 +1,7 @@
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import {
-  celo,
-  celoAlfajores,
-  kairos,
-  liskSepolia,
-  somniaTestnet,
+    celo,
+    celoAlfajores, scrollSepolia,
 } from "@reown/appkit/networks";
 import { createAppKit } from "@reown/appkit/react";
 import { http } from "wagmi";
@@ -13,13 +10,10 @@ export const WalletConnection = () => {
   const projectId = "62c66ed4cd07119457a08ddce0d80464";
 
   const wagmiAdapter = new WagmiAdapter({
-    networks: [celo, somniaTestnet, liskSepolia],
+    networks: [celo, scrollSepolia],
     transports: {
-      [celo.id]: http( celo.rpcUrls.default.http[0] ),
-      [celoAlfajores.id]: http(celoAlfajores.rpcUrls.default.http[0]),
-      [somniaTestnet.id]: http(somniaTestnet.rpcUrls.default.http[0]),
-      [liskSepolia.id]: http(liskSepolia.rpcUrls.default.http[0]),
-      [kairos.id]: http(kairos.rpcUrls.default.http[0]),
+      [scrollSepolia.id]: http(scrollSepolia.rpcUrls.default.http[0]),
+      [celo.id]: http( celo.rpcUrls.default.http[0] )
     },
     projectId,
     autoConnect: true,
@@ -27,7 +21,7 @@ export const WalletConnection = () => {
 
   const modal = createAppKit({
     adapters: [wagmiAdapter],
-    networks: [celo, celoAlfajores, somniaTestnet, liskSepolia, kairos],
+    networks: [scrollSepolia, celo, celoAlfajores],
     projectId,
     metadata: {
       name: "Lender Dashboard",

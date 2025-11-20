@@ -1,13 +1,13 @@
 import { useAccount, useWalletClient } from "wagmi";
 import { createPublicClient, http } from "viem";
-import {celo} from "@reown/appkit/networks";
+import {celo, scrollSepolia} from "@reown/appkit/networks";
 
 export const useWalletAccount = () => {
     const { isConnected, address } = useAccount();
     const { data: walletClient } = useWalletClient();
 
     const publicClient = createPublicClient({
-        chain: celo,
+        chain: scrollSepolia,
         transport: http(),
     });
 
